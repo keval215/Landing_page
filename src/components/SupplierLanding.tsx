@@ -281,6 +281,8 @@ export const SupplierLanding: React.FC<SupplierLandingProps> = ({ onBack }) => {
               >
                 Join the Supplier Waitlist →
               </button>
+              {success && <div className="text-green-400 text-center font-semibold py-2">{success}</div>}
+              {error && <div className="text-red-400 text-center font-semibold py-2">{error}</div>}
             </form>
           </div>
         </div>
