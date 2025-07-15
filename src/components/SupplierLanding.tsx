@@ -17,6 +17,8 @@ export const SupplierLanding: React.FC<SupplierLandingProps> = ({ onBack }) => {
     experience: '',
     pilotProgram: false
   });
+  const [success, setSuccess] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const SUPPLIER_WAITLIST_API = import.meta.env.VITE_SUPPLIER_WAITLIST_API;
 
   const scrollToWaitlist = () => {
@@ -46,14 +48,17 @@ export const SupplierLanding: React.FC<SupplierLandingProps> = ({ onBack }) => {
       },
       body: JSON.stringify(payload)
     })
-      .then(res => res.json())
-      .then(data => {
-        // handle success
-        console.log('Supplier waitlist response:', data);
-        console.log('Submission successful!');
+      .then(res => {
+        if (res.ok) {
+          setSuccess('Thank you! Your details have been submitted.');
+          console.log('Submission successful!');
+        } else {
+          setError('Submission failed. Please try again later.');
+        }
+        return res.json();
       })
       .catch(err => {
-        // handle error
+        setError('Network error. Please try again.');
         console.error('Supplier waitlist error:', err);
       });
   };
@@ -171,6 +176,8 @@ export const SupplierLanding: React.FC<SupplierLandingProps> = ({ onBack }) => {
             </p>
             
             <form onSubmit={handleSubmit} className="space-y-6">
+              {success && <div className="text-green-400 text-center font-semibold py-2">{success}</div>}
+              {error && <div className="text-red-400 text-center font-semibold py-2">{error}</div>}
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-2">Full Name *</label>
