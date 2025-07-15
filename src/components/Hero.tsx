@@ -36,7 +36,7 @@ export const Hero: React.FC<HeroProps> = ({ onCustomerClick, onSupplierClick }) 
           {/* Rectangular Block for Main Headline */}
           <div className="bg-gray-900/70 backdrop-blur-sm border border-gray-700/50 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8 animate-fade-in">
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent leading-tight mb-4">
-              Quick Manufacturing
+                Quick <span className="line-through text-gray-400">Commerce</span> Manufacturing
             </h1>
             <p className="text-lg sm:text-xl text-gray-300 italic">
               In the era of 10-minute deliveries, why are your parts taking weeks?
