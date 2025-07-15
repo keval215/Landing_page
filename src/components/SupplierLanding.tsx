@@ -17,6 +17,7 @@ export const SupplierLanding: React.FC<SupplierLandingProps> = ({ onBack }) => {
     experience: '',
     pilotProgram: false
   });
+  const SUPPLIER_WAITLIST_API = import.meta.env.VITE_SUPPLIER_WAITLIST_API;
 
   const scrollToWaitlist = () => {
     const element = document.getElementById('supplier-waitlist-form');
@@ -27,8 +28,34 @@ export const SupplierLanding: React.FC<SupplierLandingProps> = ({ onBack }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Supplier form submitted:', formData);
-    // Handle form submission
+    const payload = {
+      full_name: formData.fullName,
+      email: formData.email,
+      shop_name: formData.shopName,
+      location: formData.location,
+      website: formData.website ? formData.website : null,
+      parts: null,
+      capabilities: formData.capabilities,
+      experience: formData.experience,
+      pilot: formData.pilotProgram
+    };
+    fetch(SUPPLIER_WAITLIST_API, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    })
+      .then(res => res.json())
+      .then(data => {
+        // handle success
+        console.log('Supplier waitlist response:', data);
+        console.log('Submission successful!');
+      })
+      .catch(err => {
+        // handle error
+        console.error('Supplier waitlist error:', err);
+      });
   };
 
   return (
