@@ -7,4 +7,9 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
+  preview: {
+    host: true,
+    port: 8080, // or remove this line if using dynamic $PORT
+    allowedHosts: ['landingpage-dev.up.railway.app'],
+  },
 });
