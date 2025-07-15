@@ -10,6 +10,6 @@ export default defineConfig({
   preview: {
     host: true,
     port: 8080, // or remove this line if using dynamic $PORT
-    allowedHosts: ['landingpage-dev.up.railway.app'],
+    allowedHosts: ['getitmachined-lp-dev.up.railway.app'],
   },
 });
