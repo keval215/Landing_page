@@ -35,12 +35,7 @@ export const Hero: React.FC<HeroProps> = ({ onCustomerClick, onSupplierClick }) 
               In the era of 10-minute deliveries, why are your parts taking weeks?
             </p>
           </div>
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-6 sm:mb-8 leading-relaxed animate-fade-in-delay">
-            Upload your file, get CNC machined parts — without the mess.
-          </p>
-          <p className="text-base sm:text-lg text-gray-400 mb-6 sm:mb-8 animate-fade-in-delay">
-            Get a glimpse of how we're enabling CNC machined parts FAST.
-          </p>
+         
         </div>
       </div>
 

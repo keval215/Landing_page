@@ -4,9 +4,11 @@ import { Navbar } from './Navbar';
 
 interface CustomerLandingProps {
   onBack: () => void;
+  onCustomerClick: () => void;
+  onSupplierClick: () => void;
 }
 
-export const CustomerLanding: React.FC<CustomerLandingProps> = ({ onBack }) => {
+export const CustomerLanding: React.FC<CustomerLandingProps> = ({ onBack, onCustomerClick, onSupplierClick }) => {
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -19,14 +21,6 @@ export const CustomerLanding: React.FC<CustomerLandingProps> = ({ onBack }) => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-
-  // This function can be used later if you add another button to scroll to the form
-  const scrollToWaitlist = () => {
-    const element = document.getElementById('waitlist-form');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -70,7 +64,7 @@ export const CustomerLanding: React.FC<CustomerLandingProps> = ({ onBack }) => {
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
       {/* Navbar */}
-      <Navbar onCustomerClick={() => {}} onSupplierClick={onBack} />
+      <Navbar onCustomerClick={onCustomerClick} onSupplierClick={onSupplierClick} />
       {/* Background Image with Low Opacity */}
       <div className="absolute inset-0 z-0">
         <img 

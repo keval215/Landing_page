@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Hero } from './components/Hero';
 import { CustomerLanding } from './components/CustomerLanding';
 import { SupplierLanding } from './components/SupplierLanding';
@@ -55,10 +55,18 @@ function App() {
         />
       )}
       {currentPage === 'customer' && (
-        <CustomerLanding onBack={handleBackToHero} />
+        <CustomerLanding 
+          onBack={handleBackToHero}
+          onCustomerClick={handleCustomerClick}
+          onSupplierClick={handleSupplierClick}
+        />
       )}
       {currentPage === 'supplier' && (
-        <SupplierLanding onBack={handleBackToHero} />
+        <SupplierLanding 
+          onBack={handleBackToHero}
+          onCustomerClick={handleCustomerClick}
+          onSupplierClick={handleSupplierClick}
+        />
       )}
     </div>
   );

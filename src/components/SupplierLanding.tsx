@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { ArrowLeft, DollarSign, Clock, Shield, CheckCircle, Wrench, Zap, Package } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { Navbar } from './Navbar';
 interface SupplierLandingProps {
   onBack: () => void;
+  onCustomerClick: () => void;
+  onSupplierClick: () => void;
 }
-export const SupplierLanding: React.FC<SupplierLandingProps> = ({ onBack }) => {
+export const SupplierLanding: React.FC<SupplierLandingProps> = ({ onBack, onCustomerClick, onSupplierClick }) => {
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -18,12 +20,7 @@ export const SupplierLanding: React.FC<SupplierLandingProps> = ({ onBack }) => {
   const [success, setSuccess] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const SUPPLIER_WAITLIST_API = import.meta.env.VITE_SUPPLIER_WAITLIST_API;
-  const scrollToWaitlist = () => {
-    const element = document.getElementById('supplier-waitlist-form');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const payload = {
@@ -61,7 +58,7 @@ export const SupplierLanding: React.FC<SupplierLandingProps> = ({ onBack }) => {
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
       {/* Navbar */}
-      <Navbar onCustomerClick={onBack} onSupplierClick={() => {}} />
+      <Navbar onCustomerClick={onCustomerClick} onSupplierClick={onSupplierClick} />
       
       {/* Background Image with Low Opacity */}
       <div className="absolute inset-0 z-0">
