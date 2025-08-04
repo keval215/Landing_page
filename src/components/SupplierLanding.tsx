@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { ArrowLeft, DollarSign, Clock, Shield, CheckCircle, Wrench, Zap, Package } from 'lucide-react';
 import { Navbar } from './Navbar';
-
 interface SupplierLandingProps {
   onBack: () => void;
 }
-
 export const SupplierLanding: React.FC<SupplierLandingProps> = ({ onBack }) => {
   const [formData, setFormData] = useState({
     fullName: '',
@@ -20,14 +18,12 @@ export const SupplierLanding: React.FC<SupplierLandingProps> = ({ onBack }) => {
   const [success, setSuccess] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const SUPPLIER_WAITLIST_API = import.meta.env.VITE_SUPPLIER_WAITLIST_API;
-
   const scrollToWaitlist = () => {
     const element = document.getElementById('supplier-waitlist-form');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const payload = {
@@ -62,7 +58,6 @@ export const SupplierLanding: React.FC<SupplierLandingProps> = ({ onBack }) => {
         console.error('Supplier waitlist error:', err);
       });
   };
-
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
       {/* Navbar */}
@@ -88,84 +83,23 @@ export const SupplierLanding: React.FC<SupplierLandingProps> = ({ onBack }) => {
           Back to main page
         </button>
       </div>
-
+      
       {/* Hero Section */}
       <div className="container mx-auto px-4 sm:px-6 pt-6 sm:pt-8 pb-12 sm:pb-16 relative z-10">
         <div className="text-center max-w-4xl mx-auto">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent animate-fade-in leading-tight">
-            Run Your CNC Round‑The‑Clock—No Downtime
-          </h1>
+          {/* Rectangular Block for Main Headline - Updated styling */}
+          <div className="bg-gray-900/70 backdrop-blur-sm border border-gray-700/50 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8 animate-fade-in">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent animate-fade-in leading-tight">
+              Run Your CNC Round‑The‑Clock—No Downtime
+            </h1>
+          </div>
           <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-6 sm:mb-8 leading-relaxed animate-fade-in-delay px-2">
             Tap into a 24/7 stream of vetted jobs, quick turnaround with our proprietary AI engine and managed logistics.
           </p>
-          <button 
-            onClick={scrollToWaitlist}
-            className="bg-gray-800 hover:bg-gray-700 border border-green-500/30 hover:border-green-400/50 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-green-500/20 animate-fade-in-delay-2"
-          >
-            Join the Supplier Waitlist
-          </button>
-        </div>
-      </div>
-
-      {/* CNC Machine Image */}
-      <div className="container mx-auto px-4 sm:px-6 mb-12 sm:mb-16 relative z-10">
-        <div className="relative max-w-4xl mx-auto">
-          <img 
-            src="/cnc5.webp" 
-            alt="CNC machine shop" 
-            className="w-full h-48 sm:h-64 md:h-96 object-cover rounded-xl sm:rounded-2xl shadow-2xl animate-slide-up"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-xl sm:rounded-2xl"></div>
-        </div>
-      </div>
-
-      {/* Value Proposition */}
-      <div className="container mx-auto px-6 py-16 relative z-10">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 animate-fade-in-scroll">
-            Why This Is Built for You
-          </h2>
-          
-          <div className="bg-gray-900/70 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8 mb-12 animate-fade-in-scroll">
-            <p className="text-lg text-gray-300 mb-6">
-              You didn't open a machine shop to spend your day quoting, bidding, or chasing payments. You did it to make things.
-            </p>
-            <p className="text-lg text-white">
-              Our platform brings qualified CNC jobs directly to your shop — with everything you need to execute quickly and get paid reliably.
-            </p>
-          </div>
           
         </div>
       </div>
-
-      {/* How It Works */}
-      <div className="container mx-auto px-6 py-16 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 animate-fade-in-scroll">
-            How It Works
-          </h2>
-          
-          <div className="grid md:grid-cols-4 gap-6">
-            <div className="bg-gray-900/60 border border-gray-700/50 backdrop-blur-sm rounded-xl p-6 text-center animate-fade-in-scroll">
-              <div className="bg-gray-700 border border-green-500/30 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mx-auto mb-4">1</div>
-              <h3 className="font-semibold mb-2">Get Verified</h3>
-            </div>
-            <div className="bg-gray-900/60 border border-gray-700/50 backdrop-blur-sm rounded-xl p-6 text-center animate-fade-in-scroll">
-              <div className="bg-gray-700 border border-green-500/30 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mx-auto mb-4">2</div>
-              <h3 className="font-semibold mb-2">Receive Job Notifications</h3>
-            </div>
-            <div className="bg-gray-900/60 border border-gray-700/50 backdrop-blur-sm rounded-xl p-6 text-center animate-fade-in-scroll">
-              <div className="bg-gray-700 border border-green-500/30 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mx-auto mb-4">3</div>
-              <h3 className="font-semibold mb-2">Accept & Manufacture</h3>
-            </div>
-            <div className="bg-gray-900/60 border border-gray-700/50 backdrop-blur-sm rounded-xl p-6 text-center animate-fade-in-scroll">
-              <div className="bg-gray-700 border border-green-500/30 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mx-auto mb-4">4</div>
-              <h3 className="font-semibold mb-2">Get Paid on Time</h3>
-            </div>
-          </div>
-        </div>
-      </div>
-
+      
       {/* Waitlist Form */}
       <div id="supplier-waitlist-form" className="container mx-auto px-6 py-16 relative z-10">
         <div className="max-w-2xl mx-auto">
@@ -284,24 +218,6 @@ export const SupplierLanding: React.FC<SupplierLandingProps> = ({ onBack }) => {
               {success && <div className="text-green-400 text-center font-semibold py-2">{success}</div>}
               {error && <div className="text-red-400 text-center font-semibold py-2">{error}</div>}
             </form>
-          </div>
-        </div>
-      </div>
-
-      {/* Final CTA */}
-      <div className="container mx-auto px-6 py-16 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="bg-gray-900/70 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8 animate-fade-in-scroll">
-            <h3 className="text-2xl font-bold mb-4">Still unsure?</h3>
-            <p className="text-gray-300 mb-6">
-              Drop us a mail and we'll explain how our supplier network works — and how it can help grow your shop.
-            </p>
-            <a 
-              href="mailto:hello@getitmachined.com"
-              className="inline-flex items-center bg-gray-800 hover:bg-gray-700 border border-green-500/30 hover:border-green-400/50 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-green-500/20"
-            >
-              📩 hello@getitmachined.com
-            </a>
           </div>
         </div>
       </div>
