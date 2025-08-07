@@ -10,6 +10,6 @@ export default defineConfig({
   preview: {
     host: true,
     port: 8080, // or remove this line if using dynamic $PORT
-    allowedHosts: ['landing-page-rb5z.onrender.com'],
+    allowedHosts: ['kwikcnc.com'],
   },
 });
