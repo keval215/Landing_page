@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Loader2 } from 'lucide-react';
 import { Navbar } from './Navbar';
 
 interface CustomerLandingProps {
@@ -65,7 +65,13 @@ export const CustomerLanding: React.FC<CustomerLandingProps> = ({ onBack, onCust
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
       {/* Navbar */}
       <Navbar onCustomerClick={onCustomerClick} onSupplierClick={onSupplierClick} />
-      {/* Background Image with Low Opacity */}
+      
+      {/* Subtle floating elements */}
+      <div className="subtle-floating-element"></div>
+      <div className="subtle-floating-element"></div>
+      <div className="subtle-floating-element"></div>
+      
+      {/* Background Image with Enhanced Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
           src="/cnc2.webp" 
@@ -74,111 +80,145 @@ export const CustomerLanding: React.FC<CustomerLandingProps> = ({ onBack, onCust
         />
         <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-purple-900/10 to-black/95"></div>
       </div>
+      
       {/* Back Button */}
       <div className="container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 relative z-10">
         <button 
           onClick={onBack}
-          className="flex items-center text-purple-300 hover:text-white transition-colors hover:bg-gray-800/50 px-3 py-2 rounded-lg"
+          className="flex items-center text-purple-300 hover:text-white transition-all duration-300 hover:bg-gray-800/50 px-4 py-3 rounded-xl micro-interaction group"
         >
-          <ArrowLeft className="w-5 h-5 mr-2" />
-          Back to main page
+          <ArrowLeft className="w-5 h-5 mr-2 transform transition-transform group-hover:-translate-x-1" />
+          <span className="font-medium">Back to main page</span>
         </button>
       </div>
 
-      {/* --- HERO SECTION: CHANGES BELOW --- */}
-      <div className="max-w-4xl mx-auto px-6 sm:px-8 pt-24 sm:pt-32 pb-16 relative z-10">
+      {/* Enhanced Hero Section */}
+      <div className="max-w-5xl mx-auto px-6 sm:px-8 pt-16 sm:pt-24 pb-16 relative z-10">
         <div className="text-center">
-        
-          {/* This is the new rectangular block for the headline */}
-          <div className="bg-gray-900/60 backdrop-blur-md border border-gray-700/50 rounded-2xl p-8 sm:p-12 shadow-2xl shadow-purple-500/10 animate-fade-in">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tighter bg-gradient-to-br from-white to-gray-400 bg-clip-text text-transparent [text-shadow:0_4px_20px_rgba(0,0,0,0.3)] leading-tight">
-              Tired of waiting weeks to get your parts manufactured?
-            </h1>
+          {/* Subtle Professional Box for the Headline */}
+          <div className="subtle-hero-box rounded-2xl sm:rounded-3xl p-8 sm:p-12 animate-fade-in relative overflow-hidden">
+            <div className="relative z-10">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+                Tired of waiting weeks to get your parts manufactured?
+              </h1>
+            </div>
           </div>
 
-          {/* Subheading with adjusted margin */}
-          <p className="text-lg sm:text-xl text-gray-200 max-w-3xl mx-auto mt-8 leading-relaxed animate-fade-in-delay">
-            We are building the platform we wished existed. Just like quick commerce, we are going to make quick manufacturing a real thing.
-          </p>
-          
-          {/* The "Join Waitlist" button has been removed from this section */}
-
+          {/* Enhanced Subheading */}
+          <div className="mt-8 sm:mt-12">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-200 max-w-4xl mx-auto leading-relaxed animate-fade-in-delay font-light">
+              We are building the platform we wished existed. Just like <span className="text-purple-400 font-medium">quick commerce</span>, 
+              we are going to make <span className="text-purple-400 font-medium">quick manufacturing</span> a real thing.
+            </p>
+          </div>
         </div>
       </div>
-      {/* --- END OF HERO SECTION CHANGES --- */}
 
-      {/* Waitlist Form */}
-      <div id="waitlist-form" className="container mx-auto px-6 py-16 relative z-10">
-        <div className="max-w-2xl mx-auto">
-          <div className="bg-gray-900/70 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8 animate-fade-in-scroll">
-            <h2 className="text-3xl font-bold text-center mb-4">Join the Waitlist</h2>
-            <p className="text-gray-300 text-center mb-8">
-              We're currently onboarding early users. Join now for early access and quoting priority.
-            </p>
+      {/* Enhanced Waitlist Form */}
+      <div id="waitlist-form" className="container mx-auto px-6 py-20 relative z-10">
+        <div className="max-w-3xl mx-auto">
+          <div className="glass-morphism rounded-2xl sm:rounded-3xl p-8 sm:p-12 animate-fade-in-scroll">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl md:text-4xl font-bold enhanced-gradient-text mb-4">Join the Waitlist</h2>
+              <p className="text-gray-300 text-lg md:text-xl font-light">
+                We're currently onboarding early users. Join now for early access and quoting priority.
+              </p>
+            </div>
+            
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label className="block text-sm font-medium mb-2">Full Name *</label>
-                <input
-                  type="text"
-                  required
-                  value={formData.fullName}
-                  onChange={(e) => setFormData({...formData, fullName: e.target.value})}
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-400/50 focus:border-purple-400/50 transition-all"
-                  disabled={loading}
-                />
+              {success && (
+                <div className="glass-morphism border-green-500/30 text-green-400 text-center font-semibold py-4 px-6 rounded-xl animate-fade-in">
+                  {success}
+                </div>
+              )}
+              {error && (
+                <div className="glass-morphism border-red-500/30 text-red-400 text-center font-semibold py-4 px-6 rounded-xl animate-fade-in">
+                  {error}
+                </div>
+              )}
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-gray-300">Full Name *</label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.fullName}
+                    onChange={(e) => setFormData({...formData, fullName: e.target.value})}
+                    className="w-full px-4 py-4 glass-morphism border border-gray-600/50 rounded-xl focus:ring-2 focus:ring-purple-400/50 focus:border-purple-400/50 transition-all micro-interaction"
+                    disabled={loading}
+                    placeholder="Enter your full name"
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-gray-300">Email Address *</label>
+                  <input
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    className="w-full px-4 py-4 glass-morphism border border-gray-600/50 rounded-xl focus:ring-2 focus:ring-purple-400/50 focus:border-purple-400/50 transition-all micro-interaction"
+                    disabled={loading}
+                    placeholder="Enter your email"
+                  />
+                </div>
               </div>
-              <div>
-                <label className="block text-sm font-medium mb-2">Email Address *</label>
-                <input
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={(e) => setFormData({...formData, email: e.target.value})}
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-400/50 focus:border-purple-400/50 transition-all"
-                  disabled={loading}
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-2">Company / Organization</label>
+              
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-300">Company / Organization</label>
                 <input
                   type="text"
                   value={formData.company}
                   onChange={(e) => setFormData({...formData, company: e.target.value})}
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-400/50 focus:border-purple-400/50 transition-all"
+                  className="w-full px-4 py-4 glass-morphism border border-gray-600/50 rounded-xl focus:ring-2 focus:ring-purple-400/50 focus:border-purple-400/50 transition-all micro-interaction"
                   disabled={loading}
+                  placeholder="Enter your company name"
                 />
               </div>
-              <div>
-                <label className="block text-sm font-medium mb-2">What kind of parts do you usually get made?</label>
+              
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-300">What kind of parts do you usually get made?</label>
                 <textarea
                   value={formData.partsDescription}
                   onChange={(e) => setFormData({...formData, partsDescription: e.target.value})}
-                  rows={3}
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-400/50 focus:border-purple-400/50 transition-all"
+                  rows={4}
+                  className="w-full px-4 py-4 glass-morphism border border-gray-600/50 rounded-xl focus:ring-2 focus:ring-purple-400/50 focus:border-purple-400/50 transition-all micro-interaction resize-none"
                   disabled={loading}
+                  placeholder="Describe the parts you need..."
                 />
               </div>
-              <div className="flex items-center space-x-3">
+              
+              <div className="flex items-center space-x-4 p-4 glass-morphism rounded-xl">
                 <input
                   type="checkbox"
                   id="betaAccess"
                   checked={formData.betaAccess}
                   onChange={(e) => setFormData({...formData, betaAccess: e.target.checked})}
-                  className="w-5 h-5 text-purple-400 bg-gray-800 border-gray-600 rounded focus:ring-purple-400/50"
+                  className="w-5 h-5 text-purple-400 bg-gray-800 border-gray-600 rounded focus:ring-purple-400/50 transition-all"
                   disabled={loading}
                 />
-                <label htmlFor="betaAccess" className="text-sm">
+                <label htmlFor="betaAccess" className="text-sm text-gray-300 cursor-pointer">
                   I'm open to pilot invites or beta access
                 </label>
               </div>
-              {success && <div className="text-green-400 text-center font-semibold py-2">{success}</div>}
-              {error && <div className="text-red-400 text-center font-semibold py-2">{error}</div>}
+              
               <button
                 type="submit"
-                className="w-full bg-gray-800 hover:bg-gray-700 border border-purple-500/30 hover:border-purple-400/50 text-white py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/20"
+                className="w-full cta-button text-white py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-300 flex items-center justify-center space-x-2 micro-interaction"
                 disabled={loading}
               >
-                {loading ? 'Submitting...' : 'Join the Waitlist →'}
+                {loading ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    <span>Submitting...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Join the Waitlist</span>
+                    <span className="transform transition-transform group-hover:translate-x-1">→</span>
+                  </>
+                )}
               </button>
             </form>
           </div>
